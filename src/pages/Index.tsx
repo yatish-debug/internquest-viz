@@ -1,6 +1,8 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import InternshipCard from "@/components/InternshipCard";
+import AIRecommendations from "@/components/AIRecommendations";
+import AIMatchingProcess from "@/components/AIMatchingProcess";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,6 +16,9 @@ import {
   Globe,
   Shield,
   Zap,
+  Brain,
+  Target,
+  BarChart3,
 } from "lucide-react";
 
 const Index = () => {
@@ -55,19 +60,19 @@ const Index = () => {
 
   const features = [
     {
-      icon: Zap,
+      icon: Brain,
       title: "AI-Powered Matching",
-      description: "Our smart algorithm matches you with internships that fit your skills and career goals perfectly.",
+      description: "Advanced machine learning algorithms analyze your profile to find perfect matches with 95% accuracy.",
     },
     {
-      icon: Globe,
-      title: "Global Opportunities",
-      description: "Access internships from top companies worldwide, including remote and international positions.",
+      icon: Target,
+      title: "Smart Recommendations",
+      description: "Get personalized internship suggestions based on your skills, interests, and career goals.",
     },
     {
-      icon: Shield,
-      title: "Verified Companies",
-      description: "All companies are thoroughly vetted to ensure legitimate, high-quality internship experiences.",
+      icon: BarChart3,
+      title: "Data-Driven Insights",
+      description: "Our platform processes millions of data points to predict the best opportunities for you.",
     },
   ];
 
@@ -76,19 +81,22 @@ const Index = () => {
       name: "Sarah Chen",
       role: "CS Student at Stanford",
       avatar: "S",
-      quote: "InternQuest helped me land my dream internship at Google. The platform made it so easy to find opportunities that matched my skills!",
+      quote: "InternQuest's AI matched me with Google in just 2 days! The algorithm understood my skills perfectly and showed me exactly why it was a 98% match.",
+      matchScore: 98,
     },
     {
       name: "Marcus Johnson",
       role: "Design Student at RISD",
       avatar: "M", 
-      quote: "The AI matching feature is incredible. I found three amazing design internships within a week of signing up.",
+      quote: "The AI recommendation engine found me a perfect design internship at Airbnb. It analyzed my portfolio and matched me based on my design philosophy!",
+      matchScore: 94,
     },
     {
       name: "Priya Patel",
       role: "Data Science Student at MIT",
       avatar: "P",
-      quote: "Thanks to InternQuest, I'm now interning at a top fintech company. The application process was seamless!",
+      quote: "Amazing! The ML algorithms identified my passion for fintech and connected me with the perfect startup internship. The AI insights were spot-on.",
+      matchScore: 96,
     },
   ];
 
@@ -97,19 +105,33 @@ const Index = () => {
       <Navigation />
       <Hero />
 
-      {/* Featured Internships Section */}
+      {/* AI Recommendations Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <AIRecommendations />
+        </div>
+      </section>
+
+      {/* AI Matching Process */}
       <section className="py-20 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <AIMatchingProcess />
+        </div>
+      </section>
+
+      {/* Featured Internships Section */}
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
               <Star className="w-3 h-3 mr-1" />
-              Featured Opportunities
+              AI-Curated Opportunities
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Trending <span className="gradient-text">Internships</span>
+              Top <span className="gradient-text">AI Matches</span> For You
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover handpicked opportunities from top companies actively seeking talented interns
+              Our machine learning algorithms have identified these internships as perfect matches for your profile
             </p>
           </div>
 
@@ -121,7 +143,7 @@ const Index = () => {
 
           <div className="text-center">
             <Button variant="hero" size="lg">
-              View All Internships
+              View AI Recommendations
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
@@ -132,11 +154,15 @@ const Index = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
+            <Badge variant="outline" className="mb-4">
+              <Brain className="w-3 h-3 mr-1" />
+              AI Technology
+            </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Why Choose <span className="gradient-text">InternQuest</span>?
+              Powered by <span className="gradient-text">Advanced AI</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We're revolutionizing how students find internships with cutting-edge technology and personalized experiences
+              Experience the future of internship discovery with our cutting-edge machine learning technology
             </p>
           </div>
 
@@ -174,20 +200,31 @@ const Index = () => {
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="shadow-soft hover:shadow-medium transition-smooth">
                 <CardContent className="pt-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-semibold mr-3">
-                      {testimonial.avatar}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-semibold mr-3">
+                        {testimonial.avatar}
+                      </div>
+                      <div>
+                        <h4 className="font-semibold">{testimonial.name}</h4>
+                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-semibold">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                    </div>
+                    <Badge variant="secondary" className="text-xs">
+                      <Brain className="w-3 h-3 mr-1" />
+                      {testimonial.matchScore}% AI Match
+                    </Badge>
                   </div>
-                  <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
-                  <div className="flex items-center mt-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-warning fill-current" />
-                    ))}
+                  <p className="text-muted-foreground italic mb-4">"{testimonial.quote}"</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-warning fill-current" />
+                      ))}
+                    </div>
+                    <Badge variant="outline" className="text-xs">
+                      AI-Powered Match
+                    </Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -199,19 +236,23 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-20 hero-gradient text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Start Your Journey?
-          </h2>
+          <div className="flex items-center justify-center mb-4">
+            <Brain className="w-8 h-8 mr-3" />
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Ready to Experience AI-Powered Matching?
+            </h2>
+          </div>
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            Join thousands of students who have already found their perfect internships. Your career starts here.
+            Join thousands of students who are discovering their perfect internships through our advanced machine learning algorithms.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="secondary" size="xl" className="shadow-large">
-              <CheckCircle className="w-5 h-5 mr-2" />
-              Start Free Today
+              <Zap className="w-5 h-5 mr-2" />
+              Get AI Recommendations
             </Button>
             <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-primary">
-              Learn More
+              <BarChart3 className="w-5 h-5 mr-2" />
+              See How AI Works
             </Button>
           </div>
         </div>
@@ -228,7 +269,7 @@ const Index = () => {
               <span className="text-xl font-bold gradient-text">InternQuest</span>
             </div>
             <p className="text-muted-foreground mb-6">
-              Connecting talented students with amazing internship opportunities worldwide.
+              AI-powered internship matching platform connecting students with perfect opportunities worldwide.
             </p>
             <div className="flex justify-center space-x-6 text-sm text-muted-foreground">
               <a href="#" className="hover:text-primary transition-smooth">About</a>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, MapPin, Briefcase, TrendingUp, Users, Award } from "lucide-react";
+import { Search, MapPin, Brain, TrendingUp, Users, Award } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 
 const Hero = () => {
@@ -19,10 +19,10 @@ const Hero = () => {
   ];
 
   const stats = [
-    { icon: Briefcase, value: "10,000+", label: "Active Internships" },
-    { icon: Users, value: "50,000+", label: "Students Placed" },
+    { icon: Brain, value: "95%", label: "AI Match Accuracy" },
+    { icon: Users, value: "50,000+", label: "Students Matched" },
     { icon: Award, value: "2,500+", label: "Partner Companies" },
-    { icon: TrendingUp, value: "95%", label: "Success Rate" }
+    { icon: TrendingUp, value: "98%", label: "User Satisfaction" }
   ];
 
   const handleSearch = () => {
@@ -48,19 +48,19 @@ const Hero = () => {
             {/* Main Headline */}
             <div className="space-y-6">
               <Badge variant="outline" className="mb-4 shadow-soft hover:shadow-medium transition-smooth">
-                <TrendingUp className="w-3 h-3 mr-1" />
-                #1 Internship Platform for Students
+                <Brain className="w-3 h-3 mr-1" />
+                AI-Powered Internship Matching Engine
               </Badge>
               
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-                Find Your Dream{" "}
+                AI-Powered{" "}
                 <span className="gradient-text">Internship</span>{" "}
-                Today
+                Matching
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Connect with top companies, discover opportunities that match your skills, 
-                and launch your career with personalized internship recommendations.
+                Advanced machine learning algorithms analyze your skills, experience, and preferences 
+                to deliver personalized internship recommendations with 95% accuracy.
               </p>
             </div>
 
